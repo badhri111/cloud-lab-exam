@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Library Management System - AWS DynamoDB</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1>College Library Management System</h1>
+      <p class="subtitle">Cloud-Based Serverless System backed by AWS DynamoDB (Zero Fixed Cost)</p>
+    </header>
+
+    <!-- AWS Connection Card -->
+    <div class="aws-card">
+      <div class="aws-status-header">
+        <span class="status-dot" id="statusDot"></span>
+        <strong id="statusText">Checking AWS connection...</strong>
+        <button type="button" class="btn-link" id="toggleAwsConfigBtn">AWS Settings</button>
+      </div>
+
+      <!-- Collapsible AWS Credentials Config -->
+      <div id="awsConfigForm" class="aws-form" style="display: none;">
+        <p class="hint">Paste your AWS Academy Learner Lab or IAM credentials below to connect AWS DynamoDB:</p>
+        <div class="grid-row">
+          <div class="form-group">
+            <label>AWS Region:</label>
+            <input type="text" id="awsRegion" value="us-east-1" />
+          </div>
+          <div class="form-group">
+            <label>DynamoDB Table Name:</label>
+            <input type="text" id="awsTable" value="LibraryBooks" />
+          </div>
+        </div>
+        <div class="grid-row">
+          <div class="form-group">
+            <label>AWS Access Key ID:</label>
+            <input type="text" id="awsAccessKey" placeholder="ASIA... or AKIA..." />
+          </div>
+          <div class="form-group">
+            <label>AWS Secret Access Key:</label>
+            <input type="password" id="awsSecretKey" placeholder="Secret Key" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>AWS Session Token (Required for AWS Academy Learner Lab):</label>
+          <input type="text" id="awsSessionToken" placeholder="Paste session token if using Learner Lab" />
+        </div>
+        <button type="button" class="btn btn-primary btn-sm" id="saveAwsBtn">Connect to AWS</button>
+      </div>
+    </div>
+
+    <!-- Alert Message Box -->
+    <div id="alertBox" class="alert" style="display: none;"></div>
+
+    <!-- Main Content Layout -->
+    <div class="main-layout">
+      <!-- Section 1: Book Entry Form -->
+      <div class="card form-card">
+        <h2 id="formHeading">Add Book Record</h2>
+        <form id="bookForm">
+          <div class="form-group">
+            <label for="bookId">Book ID / ISBN *</label>
+            <input type="text" id="bookId" required placeholder="e.g. CS101" />
+          </div>
+
+          <div class="form-group">
+            <label for="title">Book Title *</label>
+            <input type="text" id="title" required placeholder="e.g. Cloud Computing Concepts" />
+          </div>
+
+          <div class="form-group">
+            <label for="author">Author *</label>
+            <input type="text" id="author" required placeholder="e.g. Rajkumar Buyya" />
+          </div>
+
+          <div class="grid-row">
+            <div class="form-group">
+              <label for="totalCopies">Total Copies *</label>
+              <input type="number" id="totalCopies" min="1" required placeholder="5" value="5" />
+            </div>
+            <div class="form-group">
+              <label for="availableCopies">Available Copies *</label>
+              <input type="number" id="availableCopies" min="0" required placeholder="5" value="5" />
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="saveBtn">Save Book</button>
+            <button type="button" class="btn btn-secondary" id="resetBtn">Clear</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Section 2: Library Records & Live Availability Table -->
+      <div class="card table-card">
+        <div class="table-header">
+          <h2>Book Records & Live Availability</h2>
+          <span class="badge badge-info" id="recordCount">0 Books</span>
+        </div>
+
+        <div class="table-wrapper">
+          <table id="booksTable">
+            <thead>
+              <tr>
+                <th>Book ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Total</th>
+                <th>Available</th>
+                <th>Status</th>
+                <th>Circulation</th>
+                <th>Manage</th>
+              </tr>
+            </thead>
+            <tbody id="booksBody">
+              <!-- Populated by app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>Cloud Computing Practice Exam &bull; Solution Architecture: AWS S3 + Node.js + AWS DynamoDB (On-Demand Mode: $0 Fixed Cost)</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

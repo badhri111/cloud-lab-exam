@@ -1,0 +1,32 @@
+{
+  "name": "cloud-library-management-system",
+  "version": "1.0.0",
+  "description": "Serverless, auto-scaling College Library Management System with Cloud Database CRUD operations and zero fixed monthly cost.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node test-crud.js",
+    "deploy:firebase": "firebase deploy",
+    "deploy:vercel": "vercel --prod"
+  },
+  "keywords": [
+    "cloud-computing",
+    "library-management",
+    "serverless",
+    "crud",
+    "firestore",
+    "firebase",
+    "mongodb-atlas",
+    "psg-tech"
+  ],
+  "author": "PSG College of Technology - MCA",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1157.0",
+    "@aws-sdk/lib-dynamodb": "^3.1157.0",
+    "cors": "^2.8.5",
+    "dotenv": "^18.0.9",
+    "express": "^4.19.2"
+  }
+}

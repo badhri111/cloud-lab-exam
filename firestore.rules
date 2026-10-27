@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Rules for library books collection
+    match /library_books/{bookId} {
+      // Allow read access to all users (students, staff, librarians)
+      allow read: if true;
+      
+      // Allow create, update, delete for librarian operations
+      allow write: if true;
+    }
+  }
+}
